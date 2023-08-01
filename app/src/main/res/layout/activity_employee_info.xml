@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_gravity="center"
+    android:orientation="vertical"
     tools:context=".EmployeeInfoActivity">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TextView
 
-                android:textStyle="normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textStyle="normal" />
+
             <TextView
 
-                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:textColor="@color/black"
                 android:textSize="33sp"
-                android:layout_marginStart="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -39,28 +41,37 @@
     </LinearLayout>
 
     <include
-        android:id="@+id/item_image_include"
-        android:layout_gravity="center"
+        android:id="@+id/item_image"
         layout="@layout/item_image"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_width="match_parent" />
+        android:layout_marginRight="16dp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <include layout="@layout/item_bio"/>
-            <include layout="@layout/item_phone"/>
-            <include layout="@layout/item_email"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/item_bio"
+                layout="@layout/item_bio" />
+
+            <include
+                android:id="@+id/item_phone"
+                layout="@layout/item_phone" />
+
+            <include
+                android:id="@+id/item_email"
+                layout="@layout/item_email" />
 
         </LinearLayout>
     </ScrollView>
-
 
 
 </LinearLayout>

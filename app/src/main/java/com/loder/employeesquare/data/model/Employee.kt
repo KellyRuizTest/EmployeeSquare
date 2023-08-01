@@ -1,6 +1,7 @@
 package com.loder.employeesquare.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Employee(
     @SerializedName("biography")
@@ -21,4 +22,4 @@ data class Employee(
     val team: String,
     @SerializedName("uuid")
     val uuid: String,
-)
+) : Serializable

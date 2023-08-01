@@ -1,39 +1,45 @@
 package com.loder.employeesquare.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.loder.employeesquare.data.model.EmployeeModel
-import com.loder.employeesquare.data.remote.RetrofitInstance
-import com.loder.employeesquare.util.Constants
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.loder.employeesquare.data.remote.Repository
+import com.loder.employeesquare.util.DispatcherProvider
+import com.loder.employeesquare.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EmployeeViewModel : ViewModel() {
+@HiltViewModel
+class EmployeeViewModel @Inject constructor(
 
-    private var employeeLiveData = MutableLiveData<EmployeeModel>()
+    private val repository: Repository,
+    private val dispatcherProvider: DispatcherProvider,
 
-    fun getEmployess() {
-        RetrofitInstance.api.getEmployess(Constants.BASE_URL).enqueue(object : Callback<EmployeeModel> {
-            override fun onResponse(call: Call<EmployeeModel>, response: Response<EmployeeModel>) {
-                if (response.body() != null) {
-                    employeeLiveData.value = response.body()
+) : ViewModel() {
 
-                } else {
-                   println(response.message())
-                }
-            }
-
-            override fun onFailure(call: Call<EmployeeModel>, t: Throwable) {
-                Log.e("Retrofit", t.message.toString())
-                println(t.cause)
-            }
-        })
+    sealed class EmployeeStatus {
+        class Success(val result: EmployeeModel) : EmployeeStatus()
+        class Failure(val error: String) : EmployeeStatus()
+        object Loading : EmployeeStatus()
+        object Empty : EmployeeStatus()
     }
 
-    fun observeEmployeLiveData(): LiveData<EmployeeModel> {
-        return employeeLiveData
+    private val _employee = MutableStateFlow<EmployeeStatus> (EmployeeStatus.Empty)
+    val employeeStatus: StateFlow<EmployeeStatus> = _employee
+
+    fun getEmployees() {
+        viewModelScope.launch(dispatcherProvider.io) {
+            _employee.value = EmployeeStatus.Loading
+
+            when (
+                val response = repository.getEmployee()
+            ) {
+                is Resource.Error -> _employee.value = EmployeeStatus.Failure(response.message!!)
+                is Resource.Success -> _employee.value = EmployeeStatus.Success(response.data!!)
+            }
+        }
     }
 }

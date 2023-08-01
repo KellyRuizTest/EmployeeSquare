@@ -3,7 +3,6 @@ package com.loder.employeesquare.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.loder.employeesquare.EmployeeInfoActivity
 import com.loder.employeesquare.R
@@ -34,15 +33,9 @@ class EmployeeAdapter(private val employeeList: List<Employee>) : RecyclerView.A
         val employee = employeeList.get(position)
 
         holder.binding.cardviewEmployee.setOnClickListener {
-            val intent = Intent(it.context, EmployeeInfoActivity::class.java)
-            intent.putExtra("name", employeeList[position].fullName)
-            intent.putExtra("team", employeeList[position].team)
-            intent.putExtra("bio", employeeList[position].biography)
-            intent.putExtra("pid", employeeList[position].uuid)
-            intent.putExtra("url_image_l", employeeList[position].photoUrlLarge)
-            intent.putExtra("email", employeeList[position].emailAddress)
-            intent.putExtra("phone", employeeList[position].phoneNumber)
-            intent.putExtra("type", employeeList[position].employeeType)
+            val intent = Intent(it.context, EmployeeInfoActivity::class.java).also {
+                it.putExtra("EmployeeDetail", employee)
+            }
             it.context.startActivity(intent)
         }
     }
