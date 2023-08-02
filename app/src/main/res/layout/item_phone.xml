@@ -33,7 +33,6 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:text="Mobile"
-                android:textColor="#605E5E"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -47,7 +46,6 @@
             android:layout_marginStart="25dp"
             android:layout_marginBottom="15dp"
             android:hint="+1(509)669-1563"
-            android:textColor="#ED5E5E5E"
             android:textSize="14sp"
             android:textStyle="bold" />
 

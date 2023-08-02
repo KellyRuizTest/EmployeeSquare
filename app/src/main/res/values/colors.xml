@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="iconDayNight">#234D91</color>
+    <color name="grey">#aaa</color>
 </resources>

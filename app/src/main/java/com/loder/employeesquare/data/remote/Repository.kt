@@ -1,7 +1,6 @@
 package com.loder.employeesquare.data.remote
 
 import com.loder.employeesquare.data.model.EmployeeModel
-import com.loder.employeesquare.util.Constants
 import com.loder.employeesquare.util.Resource
 import java.lang.Exception
 import javax.inject.Inject

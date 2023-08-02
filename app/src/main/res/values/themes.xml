@@ -6,4 +6,7 @@
     </style>
 
     <style name="Theme.EmployeeSquare" parent="Base.Theme.EmployeeSquare" />
+    <style name="icon" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:hint">@color/iconDayNight</item>
+    </style>
 </resources>

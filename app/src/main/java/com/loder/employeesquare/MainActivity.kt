@@ -1,6 +1,7 @@
 package com.loder.employeesquare
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, event.error, Toast.LENGTH_LONG).show()
                     }
                     is EmployeeViewModel.EmployeeStatus.Loading -> {
-                        Toast.makeText(this@MainActivity, "Loading", Toast.LENGTH_SHORT).show()
+                        Log.e("MainActiviy", "Loading")
                     }
                     else -> Unit
                 }
