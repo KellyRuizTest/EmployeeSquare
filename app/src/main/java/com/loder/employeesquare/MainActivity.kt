@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, event.error, Toast.LENGTH_LONG).show()
                     }
                     is EmployeeViewModel.EmployeeStatus.Loading -> {
-                        Log.e("MainActiviy", "Loading")
+                        Log.i("MainActiviy", "Loading")
                     }
                     else -> Unit
                 }
